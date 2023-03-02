@@ -1,14 +1,10 @@
 const { Noticias } = require("../app/models");
 const puppeteer = require("puppeteer");
 const palavrasChave = require("./palavrasChave");
-const Timer = require("easytimer.js").Timer;
-const timerInstance = new Timer();
-timerInstance.start();
 var ultimaAtualizacao;
 
  
 let scrape = async (req, res) => {
-  if (timerInstance.getTimeValues().seconds >= 30) {
   const browser = await puppeteer.launch({
     headless: true,
   });
@@ -32,7 +28,7 @@ let scrape = async (req, res) => {
     const dataPublicacao = new Date(dataHoraPublicacao[0]);
     const horaPublicacao = dataHoraPublicacao[1];
 
-    if (ultimaAtualizacao == dataPublicacao) {
+    if (ultimaAtualizacao.setDate(d.getDate() + 3) < dataPublicacao) {
 
     const titulo = await page.$eval("article > h1", (title) => title.innerText); 
 
@@ -64,16 +60,13 @@ let scrape = async (req, res) => {
         updatedAt: new Date()
     });
     console.log(noticia);
-    }
 }
 }
  
   browser.close();
   ultimaAtualizacao = new Date();
-  timerInstance.reset();
   return res.status(200).send(posts);
 }
-else res.status(200).send("nao se passaram 30 segundos ainda!")
 };
  
  
