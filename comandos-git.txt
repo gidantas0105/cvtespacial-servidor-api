@@ -1,0 +1,8 @@
+# Para adicionar novos arquivos
+git add .
+
+# Para commitar
+git commit -m "Comentário"
+
+# Para enviar para o servidor 
+git push origin master
