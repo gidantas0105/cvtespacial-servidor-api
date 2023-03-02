@@ -2,6 +2,7 @@ const express = require("express")
 const routes = require("./routers");
 const path = require("path");//importa a lib path
 const cors = require("cors");
+const scrape = require("../controllers/scrape");
 
 const corsOptions = {
   exposedHeaders: ["x-access-token"]
@@ -10,6 +11,7 @@ const corsOptions = {
 const multer = require("multer");
 const { v4: uuidv4 } = require('uuid');
 const fs = require("fs");
+const scrape = require("../controllers/AEBNoticiasController");
 
 const uploadDir = "./uploads";
 
@@ -42,6 +44,11 @@ app.use("/public", express.static("uploads"));
 app.use(express.static('public'));
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use ((req, res, next) => {
+  scrape();
+  next();
+});
 
 app.use((req, res, next) => {
     const token = req.headers["x-access-token"];    
