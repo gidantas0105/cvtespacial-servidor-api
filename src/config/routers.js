@@ -16,23 +16,23 @@ module.exports = app => {
     app.post("/admin/login", administradorController.login);
     app.delete("/admin/:id", autenticacao, administradorController.delete);
 
-    app.get("/fotos", fotosController.list);  
+    app.get("/fotos", autenticacao, fotosController.list);  
     app.post("/fotos", autenticacao, app.get("upload").single("image"),fotosController.create);    
     app.delete("/fotos/:id", autenticacao, fotosController.delete); 
     app.put("/fotos/:id", autenticacao, app.get("upload").single("image"),fotosController.update);  
 
-    app.get("/materiais", materialDidaticoController.list);
+    app.get("/materiais", autenticacao, materialDidaticoController.list);
     app.post("/materiais", autenticacao, app.get("upload").single("file"), materialDidaticoController.create);
     app.delete("/materiais/:id", autenticacao, materialDidaticoController.delete);
     app.put("/materiais/:id", autenticacao, app.get("upload").single("file"), materialDidaticoController.update);
 
-    app.get("/noticias", noticiasController.list);
+    app.get("/noticias", autenticacao, noticiasController.list);
     app.get("/noticias/resgatar-da-aeb", AEBNoticiasController.reproduzir);
     app.post("/noticias", autenticacao, noticiasController.create);
     app.delete("/noticias/:id", autenticacao, noticiasController.delete);
     app.put("/noticias/:id", autenticacao, noticiasController.update);
 
-    app.get("/praticas", praticasController.list);
+    app.get("/praticas", autenticacao, praticasController.list);
     app.post("/praticas", autenticacao, praticasController.create);
     app.delete("/praticas/:id", autenticacao, praticasController.delete);
     app.put("/praticas/:id", autenticacao, praticasController.update);
