@@ -5,6 +5,7 @@ const videosController = require("../controllers/VideoController");
 const materialDidaticoController = require("../controllers/MaterialDidaticoController");
 const administradorController = require("../controllers/AdministradorController");
 const praticasController = require("../controllers/PraticasController");
+const AEBNoticiasController = require("../controllers/AEBNoticiasController");
 
 const autenticacao = require("../infra/autenticacao");
 
@@ -26,6 +27,7 @@ module.exports = app => {
     app.put("/materiais/:id", autenticacao, app.get("upload").single("file"), materialDidaticoController.update);
 
     app.get("/noticias", autenticacao, noticiasController.list);
+    app.get("/noticias/resgatar-da-aeb", AEBNoticiasController.reproduzir);
     app.post("/noticias", autenticacao, noticiasController.create);
     app.delete("/noticias/:id", autenticacao, noticiasController.delete);
     app.put("/noticias/:id", autenticacao, noticiasController.update);
