@@ -45,7 +45,7 @@ async reproduzir (req, res) {
       const dataHoraPublicacao = await page.$eval("span.value", (data) =>
         data.innerText.split(" ")
       );
-      const dataPublicacao = new Date(dataHoraPublicacao[0]);
+      const dataPublicacao = dataHoraPublicacao[0];
       const horaPublicacao = dataHoraPublicacao[1];
 
       const noticia = await Noticias.create({
@@ -62,9 +62,8 @@ async reproduzir (req, res) {
 
       noticias.push(noticia);
   }
- 
-  browser.close();
-  return res.status(200).send(noticias);
 }
+browser.close(); 
+return res.status(200).send(noticias);
 }
 }
