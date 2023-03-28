@@ -11,7 +11,8 @@ async reproduzir (req, res) {
   });
  
   const page = await browser.newPage();
- 
+
+  await page.setDefaultNavigationTimeout(0);
  
   await page.goto("https://www.gov.br/aeb/pt-br/assuntos/noticias");
   
