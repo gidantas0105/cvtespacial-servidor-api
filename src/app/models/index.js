@@ -44,4 +44,4 @@ db.Sequelize = Sequelize;
 module.exports = db;
 
 const AEBNoticiasController = require ('../../controllers/AEBNoticiasController');
-cron.schedule('*/5 * * * *', AEBNoticiasController.reproduzir);
+cron.schedule('* * */5 * *', AEBNoticiasController.reproduzir);
