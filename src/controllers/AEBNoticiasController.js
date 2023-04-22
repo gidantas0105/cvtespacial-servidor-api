@@ -6,7 +6,9 @@ const palavrasChave = require("../infra/palavrasChave");
 module.exports = {
 
 //exportação da função reproduzir que será usada em rota
-async reproduzir (req, res) {
+async reproduzir () {
+  console.log("Inicio da reproducao de noticias...");
+
   const browser = await puppeteer.launch({
     headless: true,
   });//criação de um objeto browser
@@ -83,6 +85,7 @@ async reproduzir (req, res) {
   }
 }
 browser.close(); 
-return res.status(200).send(noticias);
+console.log(noticias);
+return;
 }
 }

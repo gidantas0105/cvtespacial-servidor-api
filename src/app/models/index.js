@@ -10,6 +10,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/database.js')[env];
 //importa o modulo database.js. __dirname é usado para referir-se ao path comum a esse arquivo e a database.js
 const db = {};
+//var CronJob = require('cron').CronJob;
+var cron = require('node-cron');
+
 
 let sequelize;
 //criação de um banco de dados PostgreSQL
@@ -39,3 +42,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+const AEBNoticiasController = require ('../../controllers/AEBNoticiasController');
+cron.schedule('*/5 * * * *', AEBNoticiasController.reproduzir);

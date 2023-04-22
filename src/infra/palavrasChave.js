@@ -1,2 +1,2 @@
 module.exports = ["projeto", "cvt", "centro vocacional tecnológico", "espacial", "foguete",
-"satélite","ciências","ufrn","rádio"]
+"satélite","ciências","ufrn","rádio", "constelação","astro"]
