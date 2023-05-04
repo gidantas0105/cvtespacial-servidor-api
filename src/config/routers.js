@@ -7,6 +7,7 @@ const administradorController = require("../controllers/AdministradorController"
 const praticasController = require("../controllers/PraticasController");
 const AEBNoticiasController = require("../controllers/AEBNoticiasController");
 
+
 const autenticacao = require("../infra/autenticacao");
 
 
@@ -43,4 +44,14 @@ module.exports = app => {
     app.post("/videos", autenticacao, app.get("upload").single("image"), videosController.create);
     app.delete("/videos/:id", autenticacao, videosController.delete);
     app.put("/videos/:id", autenticacao, app.get("upload").single("image"),videosController.update);
+
+    app.get ("/grafana-e-nodered", autenticacao, (req, res) => {
+        let conectado_a_rede = false;
+        if (conectado_a_rede) {
+            res.sendFile("C:/Users/pc/Desktop/Giovana/CVTEspacial/cvtespacial-servidor-api-master/cvtespacial-servidor-api-master/public/grafana-e-nodered.html");
+        }
+        else {
+            res.sendFile("C:/Users/pc/Desktop/Giovana/CVTEspacial/cvtespacial-servidor-api-master/cvtespacial-servidor-api-master/public/rej-grafana-e-nodered.html");
+        }
+    })
 };
